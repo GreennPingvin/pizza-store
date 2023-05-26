@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { setSortBy } from '../redux/slices/filterSlice'
 
 const LIST_SORT_BY = [
   { rusName: 'популярности (DESC)', sortBy: '-rating' },
@@ -9,12 +11,14 @@ const LIST_SORT_BY = [
   { rusName: 'алфавиту (ASC)', sortBy: 'title' },
 ]
 
-function Sort({ value, onChange }) {
-  const [showSortByItems, setShowSortByItems] = useState(false)
+function Sort() {
+  const [showSortOptions, setShowSortOptions] = useState(false)
+  const dispatch = useDispatch()
+  const sort = useSelector((state) => state.filter.sort)
 
   function sortChangeHandler(sortObj) {
-    onChange(sortObj)
-    setShowSortByItems(false)
+    dispatch(setSortBy(sortObj))
+    setShowSortOptions(false)
   }
 
   return (
@@ -32,15 +36,17 @@ function Sort({ value, onChange }) {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span onClick={() => setShowSortByItems(!showSortByItems)}>{value.rusName}</span>
+        <span onClick={() => setShowSortOptions(!showSortOptions)}>
+          {sort.rusName}
+        </span>
       </div>
-      {showSortByItems && (
+      {showSortOptions && (
         <div className='sort__popup'>
           <ul>
             {LIST_SORT_BY.map((sortObj, i) => (
               <li
                 key={i}
-                className={value.sortBy === sortObj.sortBy ? 'active' : ''}
+                className={sort.sortBy === sortObj.sortBy ? 'active' : ''}
                 onClick={() => sortChangeHandler(sortObj)}>
                 {sortObj.rusName}
               </li>
