@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setSortBy } from '../redux/slices/filterSlice'
+import { setSort } from '../redux/slices/filterSlice'
 
 const LIST_SORT_BY = [
   { rusName: 'популярности (DESC)', sortBy: '-rating' },
@@ -17,7 +17,7 @@ function Sort() {
   const sort = useSelector((state) => state.filter.sort)
 
   function sortChangeHandler(sortObj) {
-    dispatch(setSortBy(sortObj))
+    dispatch(setSort(sortObj))
     setShowSortOptions(false)
   }
 
