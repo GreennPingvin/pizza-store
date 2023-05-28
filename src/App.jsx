@@ -3,7 +3,7 @@ import Header from './components/Header'
 import Home from './pages/Home'
 import './scss/app.scss'
 import Cart from './pages/Cart'
-import NotFoundBlock from './components/NotFoundBlock/NotFoundBlock'
+import NotFoundBlock from './components/NotFoundBlock'
 import { createContext, useState } from 'react'
 
 const SearchContext = createContext()

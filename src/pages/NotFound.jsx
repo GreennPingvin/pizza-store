@@ -1,6 +1,6 @@
 import React from 'react'
 
-import NotFoundBlock from '../components/NotFoundBlock/NotFoundBlock'
+import NotFoundBlock from '../components/NotFoundBlock'
 
 const NotFound = () => {
   return <NotFoundBlock />
